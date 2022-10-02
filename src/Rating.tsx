@@ -1,17 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-type RatingPropsType = {
-  value: 1 | 2 | 3 | 4 | 5;
-}
 
-export function Rating(props: RatingPropsType) {
+
+export function Rating() {
+  const [value, setValue] = useState(0)
   return (
     <div>
-      <Star selected={props.value > 0} />
-      <Star selected={props.value > 1}/>
-      <Star selected={props.value > 2}/>
-      <Star selected={props.value > 3}/>
-      <Star selected={props.value > 4}/>
+      <Star selected={value > 0} setValue={()=>setValue(1)}/>
+      <Star selected={value > 1} setValue={()=>setValue(2)}/>
+      <Star selected={value > 2} setValue={()=>setValue(3)}/>
+      <Star selected={value > 3} setValue={()=>setValue(4)}/>
+      <Star selected={value > 4} setValue={()=>setValue(5)}/>
 
       </div>
   );
@@ -19,10 +18,11 @@ export function Rating(props: RatingPropsType) {
 
 type StarsProps = {
   selected: boolean;
+  setValue: () => void;
 }
 
 export function Star(props: StarsProps) {
   return (
-      <span style={props.selected ? {fontWeight: '700'} : undefined}>star </span>
+      <button onClick={()=> props.setValue()} style={props.selected ? {fontWeight: '700'} : undefined}>star </button>
   );
 };
