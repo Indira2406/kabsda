@@ -1,28 +1,37 @@
-import React, {useState} from 'react';
+import React from "react";
 
+export type RatingValueType = 0| 1 | 2| 3 | 4 | 5;
 
+type RatingProps = {
+  value: RatingValueType;
+  onClick: (value: RatingValueType)=> void;
+}
 
-export function Rating() {
-  const [value, setValue] = useState(0)
+export function Rating(props: RatingProps) {
   return (
     <div>
-      <Star selected={value > 0} setValue={()=>setValue(1)}/>
-      <Star selected={value > 1} setValue={()=>setValue(2)}/>
-      <Star selected={value > 2} setValue={()=>setValue(3)}/>
-      <Star selected={value > 3} setValue={()=>setValue(4)}/>
-      <Star selected={value > 4} setValue={()=>setValue(5)}/>
-
-      </div>
+      <Star selected={props.value > 0} onClick={props.onClick} value={1} />
+      <Star selected={props.value > 1} onClick={props.onClick} value={2}/>
+      <Star selected={props.value > 2} onClick={props.onClick} value={3}/>
+      <Star selected={props.value > 3} onClick={props.onClick} value={4}/>
+      <Star selected={props.value > 4} onClick={props.onClick} value={5}/>
+    </div>
   );
-};
+}
 
 type StarsProps = {
   selected: boolean;
-  setValue: () => void;
-}
+  onClick: (value:RatingValueType) => void;
+  value: RatingValueType;
+};
 
 export function Star(props: StarsProps) {
   return (
-      <button onClick={()=> props.setValue()} style={props.selected ? {fontWeight: '700'} : undefined}>star </button>
+    <button
+      onClick={() => props.onClick(props.value)}
+      style={props.selected ? { fontWeight: "700" } : undefined}
+    >
+      star{" "}
+    </button>
   );
-};
+}

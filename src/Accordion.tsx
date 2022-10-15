@@ -1,37 +1,40 @@
-import React, {useState} from 'react';
+import React  from "react";
 
-interface AccordionPropsTitle  {
+interface AccordionPropsTitle {
   titleValue: string;
   collapsed: boolean;
-  setCollapsed: (collapsed: boolean) => void;
+  onChange: (collapsed: boolean) => void;
 }
 interface AccordionProps {
   titleValue: string;
+  collapsed: boolean;
+  onChange: () => void;
 }
 
-export function Accordion({titleValue}: AccordionProps) {
-  const [collapsed, setCollapsed] = useState(false)
-
+export function Accordion(props: AccordionProps) {
   return (
     <>
-      <AccordionTitle titleValue={titleValue} collapsed={collapsed} setCollapsed={setCollapsed}/>
-      {
-        collapsed &&  <AccordionBody/>
-      }
+      <AccordionTitle
+        titleValue={props.titleValue}
+        collapsed={props.collapsed}
+        onChange={props.onChange}
+      />
+      {props.collapsed && <AccordionBody />}
     </>
   );
-};
+}
 
-export function AccordionTitle({collapsed, setCollapsed, titleValue}: AccordionPropsTitle) {
+export function AccordionTitle({
+  collapsed,
+  onChange,
+  titleValue,
+}: AccordionPropsTitle) {
   return (
-    <button onClick={()=> setCollapsed(!collapsed)} >
-      <h3>
-        {titleValue}
-      </h3>
+    <button onClick={() => onChange(!collapsed)}>
+      <h3>{titleValue}</h3>
     </button>
-
   );
-};
+}
 
 export function AccordionBody() {
   return (
@@ -43,4 +46,4 @@ export function AccordionBody() {
       </ul>
     </div>
   );
-};
+}
