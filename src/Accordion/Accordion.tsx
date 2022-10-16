@@ -5,8 +5,10 @@ interface AccordionPropsTitle {
   collapsed: boolean;
   onChange: (collapsed: boolean) => void;
 }
-interface AccordionProps {
+export type AccordionProps = {
+      /** headers text */
   titleValue: string;
+/**if component collapsed */
   collapsed: boolean;
   onChange: () => void;
 }
@@ -19,7 +21,7 @@ export function Accordion(props: AccordionProps) {
         collapsed={props.collapsed}
         onChange={props.onChange}
       />
-      {props.collapsed && <AccordionBody />}
+      {!props.collapsed && <AccordionBody />}
     </>
   );
 }

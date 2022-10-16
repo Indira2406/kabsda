@@ -2,7 +2,7 @@ import React  from 'react';
 
 import './OnOff.css';
 
-type OnOffType = {
+export type OnOffType = {
   switchOn: boolean;
   onChange: (switchOn: boolean)=> void;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Accordion } from "./Accordion";
-import { Rating, RatingValueType } from "./Rating";
+import { Accordion } from "./Accordion/Accordion";
+import { Rating, RatingValueType } from "./Rating/Rating";
 import { OnOff } from "./OnOff/OnOff";
 
 function App() {
