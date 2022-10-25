@@ -1,6 +1,6 @@
 import { Story } from "@storybook/react";
 import React, { useState } from "react";
-
+import {action} from '@storybook/addon-actions'
 import { Accordion, AccordionProps } from "./Accordion";
 
 export default {
@@ -9,6 +9,7 @@ export default {
 };
 
 const Template: Story<AccordionProps> = (args) => <Accordion {...args} />;
+const onClickCallback = action('some item was clicked')
 
 export const CollapsedMode = Template.bind({});
 CollapsedMode.args = {
@@ -22,6 +23,14 @@ UncollapsedMode.args = {
   titleValue: "Header",
   collapsed: false,
   onChange: () => {},
+  onClick: onClickCallback,
+  items: [
+    { title: "Dimuch", value: 1 },
+    { title: "Valera", value: 2 },
+    { title: "Igor", value: 3 },
+    { title: "Ignat", value: 4 },
+    { title: "Sasha", value: 5 },
+  ],
 };
 
 export const CollapseSwitch: Story<AccordionProps> = (args) => {
@@ -36,4 +45,14 @@ export const CollapseSwitch: Story<AccordionProps> = (args) => {
 };
 CollapseSwitch.args = {
   titleValue: "Header",
+  items: [
+    { title: "Dimuch", value: 1 },
+    { title: "Valera", value: 2 },
+    { title: "Igor", value: 3 },
+    { title: "Ignat", value: 4 },
+    { title: "Sasha", value: 5 },
+  ],
+  onClick: onClickCallback,
 };
+
+
